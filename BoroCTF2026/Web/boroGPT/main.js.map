@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "file": "main.js",
+  "sourceRoot": "",
+  "sources": [
+    "src/index.js",
+    "src/api/client.js",
+    "src/components/chat.js",
+    "src/components/sidebar.js",
+    "src/utils/dom.js"
+  ],
+  "sourcesContent": [
+    "import { api } from './api/client';\nimport { initChat } from './components/chat';\nimport { initSidebar } from './components/sidebar';\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  initSidebar();\n  initChat(api);\n});\n",
+    "// Legacy dev client - DO NOT SHIP\nconst devFetch = (endpoint, options = {}) => {\n  return fetch(endpoint, {\n    ...options,\n    headers: {\n      ...options.headers,\n      \"X-Dev-Mode\": \"true\"\n    }\n  });\n};\n\nexport const getUsers = () => devFetch(\"/api/v0/users\");\nexport const renderTemplate = (template, token) => devFetch(\"/api/v0/render\", {\n  method: \"POST\",\n  headers: { \"Authorization\": `Bearer ${token}` },\n  body: JSON.stringify({ template })\n});\n\nexport const getJWKS = () => devFetch(\"/api/v0/jwks\");\n",
+    "export function initChat(api) {\n  const container = document.getElementById('chatContainer');\n  const input = document.getElementById('msgInput');\n  if (!container || !input) return;\n\n  window._chatApi = api;\n}\n",
+    "export function initSidebar() {\n  const items = document.querySelectorAll('.conv-item');\n  items.forEach(item => {\n    item.addEventListener('click', () => {\n      items.forEach(i => i.classList.remove('active'));\n      item.classList.add('active');\n    });\n  });\n}\n",
+    "export const escHtml = s =>\n  s.replace(/&/g, '&amp;')\n   .replace(/</g, '&lt;')\n   .replace(/>/g, '&gt;')\n   .replace(/\"/g, '&quot;');\n\nexport const qs = (sel, ctx = document) => ctx.querySelector(sel);\nexport const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];\n"
+  ],
+  "names": [],
+  "mappings": "AAAA,SAAS,GAAG,EAAE,SAAS,EAAE,WAAW,EAAE,SAAS"
+}

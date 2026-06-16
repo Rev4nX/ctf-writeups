@@ -1,0 +1,3 @@
+var encoded = "Ym9yb0NURnswbjFfRiFsZV9JNV9AMTFfaXRfdEFrZSR9" (base64)
+
+boroCTF{0n1_F!le_I5_@11_it_tAke$}

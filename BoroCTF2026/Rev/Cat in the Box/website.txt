@@ -1,0 +1,8 @@
+The cat wispers the flag to you ...
+Segmentation fault (core dumped)
+
+-----------------
+SUPER SECRET AREA
+-----------------
+Yeah, I hardcoded the segfault.
+Here's your real flag: boroCTF{lEts_gO_B3y0nd_b1nar1e$}
